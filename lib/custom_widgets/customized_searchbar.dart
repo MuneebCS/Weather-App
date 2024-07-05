@@ -22,10 +22,10 @@ class _MySearchBarState extends State<MySearchBar> {
     if (!mounted) return;
 
     if (city.isNotEmpty) {
+      CityWeatherProvider myProvider =
+          Provider.of<CityWeatherProvider>(context, listen: false);
       try {
         if (!mounted) return;
-        CityWeatherProvider myProvider =
-            Provider.of<CityWeatherProvider>(context, listen: false);
         await myProvider.fetchWeather(city);
 
         if (myProvider.errorMsg.isNotEmpty) {
@@ -38,12 +38,11 @@ class _MySearchBarState extends State<MySearchBar> {
             textColor: Colors.white,
             fontSize: 16.0,
           );
+          myProvider.clearError();
         }
         _controller.clear();
       } catch (ex) {
         if (!mounted) return;
-        // print('Exception caught: $ex');
-        // print('Stack trace: $stackTrace');
         Fluttertoast.showToast(
           msg: "An unexpected error occurred: $ex",
           toastLength: Toast.LENGTH_SHORT,
@@ -53,6 +52,7 @@ class _MySearchBarState extends State<MySearchBar> {
           textColor: Colors.white,
           fontSize: 16.0,
         );
+        myProvider.clearError();
         _controller.clear();
       }
     } else {
@@ -65,6 +65,7 @@ class _MySearchBarState extends State<MySearchBar> {
         textColor: Colors.white,
         fontSize: 16.0,
       );
+
       _controller.clear();
     }
   }

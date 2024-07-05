@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomListTile extends StatelessWidget {
   final String date;
-
   final String temperature;
-  final IconData icon;
+  final String iconPath;
 
   const CustomListTile({
     Key? key,
     required this.date,
     required this.temperature,
-    required this.icon,
+    required this.iconPath,
   }) : super(key: key);
 
   @override
@@ -50,7 +50,7 @@ class CustomListTile extends StatelessWidget {
             ),
           ),
           Expanded(
-            flex: 3,
+            flex: 2,
             child: Center(
               child: Text(
                 temperature,
@@ -66,9 +66,10 @@ class CustomListTile extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Icon(
-                  icon,
-                  size: 24,
+                SvgPicture.asset(
+                  iconPath,
+                  width: 24,
+                  height: 24,
                   color: const Color.fromARGB(255, 54, 160, 231),
                 ),
               ],

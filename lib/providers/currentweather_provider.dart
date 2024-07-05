@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import '../model/CurrentWeather.dart';
 import '../model/5days_weather.dart';
 import '../services/api_services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CityWeatherProvider with ChangeNotifier {
   CurrentWeather? _currentWeather;
@@ -73,36 +74,37 @@ class CityWeatherProvider with ChangeNotifier {
     }
   }
 
-  IconData getWeatherIcon(double temperature) {
-    if (temperature <= -30) {
-      return Icons.ac_unit;
-    } else if (temperature > -30 && temperature <= -20) {
-      return Icons.ac_unit;
-    } else if (temperature > -20 && temperature <= -10) {
-      return Icons.snowing;
-    } else if (temperature > -10 && temperature <= 0) {
-      return Icons.wb_cloudy;
-    } else if (temperature > 0 && temperature <= 10) {
-      return Icons.cloud;
-    } else if (temperature > 10 && temperature <= 15) {
-      return Icons.cloud_queue;
-    } else if (temperature > 15 && temperature <= 20) {
-      return Icons.wb_cloudy;
-    } else if (temperature > 20 && temperature <= 25) {
-      return Icons.wb_sunny;
-    } else if (temperature > 25 && temperature <= 30) {
-      return Icons.sunny_snowing;
-    } else if (temperature > 30 && temperature <= 35) {
-      return Icons.wb_sunny_outlined;
+  String getWeatherIcon(double temperature) {
+    if (temperature > -40 && temperature < -10) {
+      return "assets/icons/90d.svg";
+    } else if (temperature > -10 && temperature <= 5) {
+      return "assets/icons/50d.svg";
+    } else if (temperature > 5 && temperature < 15) {
+      return "assets/icons/04n.svg";
+    } else if (temperature > 15 && temperature < 22) {
+      return "assets/icons/09d.svg";
+    } else if (temperature > 22 && temperature < 25) {
+      return "assets/icons/02d.svg";
+    } else if (temperature > 25 && temperature < 28) {
+      return "assets/icons/03n.svg";
+    } else if (temperature > 28 && temperature < 30) {
+      return "assets/icons/10d.svg";
+    } else if (temperature > 30 && temperature < 33) {
+      return "assets/icons/s3.svg";
+    } else if (temperature > 33 && temperature < 35) {
+      return "assets/icons/s1.svg";
     } else if (temperature > 35 && temperature <= 40) {
-      return Icons.wb_sunny_rounded;
+      return "assets/icons/01d.svg";
     } else if (temperature > 40 && temperature <= 45) {
-      return Icons.wb_sunny;
-    } else if (temperature > 45 && temperature <= 50) {
-      return Icons.wb_sunny;
+      return "assets/icons/01n.svg";
     } else {
-      return Icons.error_outline;
+      return "assets/icons/01n.svg";
     }
+  }
+
+  void clearError() {
+    _errorMsg = '';
+    notifyListeners();
   }
 
   CurrentWeather? get currentWeather => _currentWeather;
@@ -110,8 +112,6 @@ class CityWeatherProvider with ChangeNotifier {
   String get currentCity => _currentCity;
   String get errorMsg => _errorMsg;
   bool get isLoading => _isLoading;
-
-  get main => null;
 
   Future<void> fetchWeather(String city) async {
     _errorMsg = "";
@@ -133,11 +133,26 @@ class CityWeatherProvider with ChangeNotifier {
       if (weatherResult['errorMsg'] != null) {
         _errorMsg = weatherResult['errorMsg'];
       }
+
+      await _saveToPrefs();
     } catch (e) {
       _errorMsg = "Failed to fetch weather data: $e";
     } finally {
       _isLoading = false;
       notifyListeners();
+    }
+  }
+
+  Future<void> _saveToPrefs() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('currentCity', _currentCity);
+  }
+
+  Future<void> loadFromPrefs() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    _currentCity = prefs.getString('currentCity') ?? '';
+    if (_currentCity.isNotEmpty) {
+      await fetchWeather(_currentCity);
     }
   }
 }

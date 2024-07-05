@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomListTile extends StatelessWidget {
   final String day_no;
   final String day;
-  final IconData iconData;
+  final String iconPath;
   final String temperature;
 
   const CustomListTile({
     super.key,
     required this.day_no,
     required this.day,
-    required this.iconData,
+    required this.iconPath,
     required this.temperature,
   });
 
@@ -21,7 +22,7 @@ class CustomListTile extends StatelessWidget {
     return Container(
       width: 70,
       decoration: BoxDecoration(
-        color: Colors.white,
+        // color: Colors.white,
         borderRadius: BorderRadius.circular(40),
         border: Border.all(
           color: const Color.fromARGB(255, 103, 115, 126),
@@ -55,9 +56,10 @@ class CustomListTile extends StatelessWidget {
             const SizedBox(
               height: 2,
             ),
-            Icon(
-              iconData,
-              size: 35,
+            SvgPicture.asset(
+              iconPath,
+              width: 35,
+              height: 35,
               color: const Color.fromARGB(255, 54, 160, 231),
             ),
             const SizedBox(

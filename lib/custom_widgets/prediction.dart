@@ -77,14 +77,14 @@ class _WeatherPredictionState extends State<WeatherPrediction> {
         date: obj.formatDateTime(weatherItem.dtTxt),
         temperature:
             '${obj.day_weatherInCelcius(weatherItem.main.temp.toDouble())}°',
-        icon: obj.getWeatherIcon(double.parse(
+        iconPath: obj.getWeatherIcon(double.parse(
             obj.day_weatherInCelcius(weatherItem.main.temp.toDouble()))),
       );
     } else {
       return CustomListTile(
         date: '',
         temperature: '',
-        icon: Icons.error,
+        iconPath: "no",
       );
     }
   }

@@ -51,7 +51,7 @@ class _ForecastDetailState extends State<ForecastDetail> {
                     return CustomListTile(
                       day_no: '',
                       day: '',
-                      iconData: Icons.error,
+                      iconPath: '',
                       temperature: '',
                     );
                   } else {
@@ -62,7 +62,7 @@ class _ForecastDetailState extends State<ForecastDetail> {
                             obj.daysWeather!.list[index].dtTxt),
                         day: obj.formatHourTimeDateTime(
                             obj.daysWeather!.list[index].dtTxt),
-                        iconData: obj.getWeatherIcon(double.parse(
+                        iconPath: obj.getWeatherIcon(double.parse(
                             obj.day_weatherInCelcius(obj
                                 .daysWeather!.list[index].main.temp
                                 .toDouble()))),

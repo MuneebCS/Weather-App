@@ -14,7 +14,8 @@ void main() {
     runApp(
       MultiProvider(
         providers: [
-          ChangeNotifierProvider(create: (context) => CityWeatherProvider()),
+          ChangeNotifierProvider(
+              create: (context) => CityWeatherProvider()..loadFromPrefs()),
         ],
         child: MyApp(),
       ),
