@@ -30,15 +30,15 @@ class WeatherDetails extends StatelessWidget {
                     Text("Weather Now",
                         style:
                             const TextStyle(fontFamily: 'My3', fontSize: 18)),
-                    // Text(
-                    //   "More",
-                    //   style: TextStyle(
-                    //     fontFamily: 'My3',
-                    //     color: Colors.black,
-                    //     fontSize: 14,
-                    //     decoration: TextDecoration.underline,
-                    //   ),
-                    // ),
+                    Text(
+                      "More",
+                      style: TextStyle(
+                        fontFamily: 'My3',
+                        color: Colors.black,
+                        fontSize: 14,
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
                   ],
                 ),
                 const SizedBox(height: 15),

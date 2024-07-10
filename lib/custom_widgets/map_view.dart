@@ -57,22 +57,22 @@ class _MapViewState extends State<MapView> {
                               fontSize: 13,
                             ),
                           ),
-                          // Spacer(),
-                          // Text(
-                          //   cityWeatherProvider.formatTime(cityWeatherProvider
-                          //               .currentWeather?.timezone) !=
-                          //           'null'
-                          //       ? cityWeatherProvider.formatTime(
-                          //           cityWeatherProvider
-                          //               .currentWeather?.timezone)
-                          //       : '',
-                          //   style: const TextStyle(
-                          //     fontFamily: 'My3',
-                          //     color: Color.fromARGB(205, 4, 20, 54),
-                          //     fontWeight: FontWeight.bold,
-                          //     fontSize: 13,
-                          //   ),
-                          // ),
+                          Spacer(),
+                          Text(
+                            cityWeatherProvider.formatTime(cityWeatherProvider
+                                        .currentWeather?.timezone) !=
+                                    'null'
+                                ? cityWeatherProvider.formatTime(
+                                    cityWeatherProvider
+                                        .currentWeather?.timezone)
+                                : '',
+                            style: const TextStyle(
+                              fontFamily: 'My3',
+                              color: Color.fromARGB(205, 4, 20, 54),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 13,
+                            ),
+                          ),
                         ],
                       ),
                     );

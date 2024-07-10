@@ -29,15 +29,15 @@ class _ForecastDetailState extends State<ForecastDetail> {
                     fontSize: 16,
                   ),
                 ),
-                // Text(
-                //   "Next 24 hours",
-                //   style: TextStyle(
-                //     fontFamily: 'My3',
-                //     color: Colors.black,
-                //     fontSize: 13,
-                //     decoration: TextDecoration.underline,
-                //   ),
-                // ),
+                Text(
+                  "Next 24 hours",
+                  style: TextStyle(
+                    fontFamily: 'My3',
+                    color: Colors.black,
+                    fontSize: 13,
+                    decoration: TextDecoration.underline,
+                  ),
+                ),
               ],
             ),
             SizedBox(height: 8),

@@ -29,15 +29,15 @@ class _WeatherPredictionState extends State<WeatherPrediction> {
                     fontSize: 16,
                   ),
                 ),
-                // Text(
-                //   "Next 5 days",
-                //   style: TextStyle(
-                //     fontFamily: 'My3',
-                //     color: Colors.black,
-                //     fontSize: 13,
-                //     decoration: TextDecoration.underline,
-                //   ),
-                // ),
+                Text(
+                  "Next 5 days",
+                  style: TextStyle(
+                    fontFamily: 'My3',
+                    color: Colors.black,
+                    fontSize: 13,
+                    decoration: TextDecoration.underline,
+                  ),
+                ),
               ],
             ),
             const SizedBox(

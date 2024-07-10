@@ -11,6 +11,14 @@ class CurrentWeatherDetail extends StatefulWidget {
 }
 
 class _CurrentWeatherDetailState extends State<CurrentWeatherDetail> {
+  String _formatTime(int timestamp) {
+    DateTime dateTime = DateTime.fromMillisecondsSinceEpoch(timestamp * 1000);
+    final hour = dateTime.hour % 12 == 0 ? 12 : dateTime.hour % 12;
+    final minute = dateTime.minute.toString().padLeft(2, '0');
+    final period = dateTime.hour >= 12 ? 'PM' : 'AM';
+    return "$hour:$minute $period";
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<CityWeatherProvider>(
@@ -174,37 +182,37 @@ class _CurrentWeatherDetailState extends State<CurrentWeatherDetail> {
                     child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: [
-                    // OtherFactor(
-                    //   FactorName: 'Wind',
-                    //   icon: Icons.air,
-                    //   val: cityWeatherProvider.currentWeather != null &&
-                    //           cityWeatherProvider.currentWeather!.wind != null
-                    //       ? '${cityWeatherProvider.currentWeather!.wind!.speed} km/h'
-                    //       : '',
-                    // ),
-                    //  SizedBox(width: 10),
-                    // OtherFactor(
-                    //   FactorName: 'Pressure',
-                    //   icon: Icons.ac_unit,
-                    //   val: cityWeatherProvider.currentWeather != null &&
-                    //           cityWeatherProvider
-                    //                   .currentWeather!.main!.pressure !=
-                    //               null
-                    //       ? '${cityWeatherProvider.currentWeather!.main!.pressure} MB'
-                    //       : '',
-                    // ),
-                    //  SizedBox(width: 10),
-                    // OtherFactor(
-                    //   FactorName: 'Humidity',
-                    //   icon: Icons.water_drop,
-                    //   val: cityWeatherProvider.currentWeather != null &&
-                    //           cityWeatherProvider
-                    //                   .currentWeather!.main!.humidity !=
-                    //               null
-                    //       ? '${cityWeatherProvider.currentWeather!.main!.humidity}%'
-                    //       : '',
-                    // ),
-                    //  SizedBox(width: 10),
+                    OtherFactor(
+                      FactorName: 'Wind',
+                      icon: Icons.air,
+                      val: cityWeatherProvider.currentWeather != null &&
+                              cityWeatherProvider.currentWeather!.wind != null
+                          ? '${cityWeatherProvider.currentWeather!.wind!.speed} km/h'
+                          : '',
+                    ),
+                    SizedBox(width: 10),
+                    OtherFactor(
+                      FactorName: 'Pressure',
+                      icon: Icons.ac_unit,
+                      val: cityWeatherProvider.currentWeather != null &&
+                              cityWeatherProvider
+                                      .currentWeather!.main!.pressure !=
+                                  null
+                          ? '${cityWeatherProvider.currentWeather!.main!.pressure} MB'
+                          : '',
+                    ),
+                    SizedBox(width: 10),
+                    OtherFactor(
+                      FactorName: 'Humidity',
+                      icon: Icons.water_drop,
+                      val: cityWeatherProvider.currentWeather != null &&
+                              cityWeatherProvider
+                                      .currentWeather!.main!.humidity !=
+                                  null
+                          ? '${cityWeatherProvider.currentWeather!.main!.humidity}%'
+                          : '',
+                    ),
+                    SizedBox(width: 10),
                     OtherFactor(
                       FactorName: 'Sea Level',
                       icon: Icons.waves,
@@ -236,29 +244,29 @@ class _CurrentWeatherDetailState extends State<CurrentWeatherDetail> {
                           ? '${cityWeatherProvider.currentWeather!.main!.grndLevel} km'
                           : '',
                     ),
-                    //  SizedBox(width: 10),
-                    // OtherFactor(
-                    //   FactorName: 'Sun Rise',
-                    //   icon: Icons.wb_sunny, // Relevant icon for sunrise
-                    //   val: cityWeatherProvider.currentWeather != null &&
-                    //           cityWeatherProvider
-                    //                   .currentWeather!.sys!.sunrise !=
-                    //               null
-                    //       ? _formatTime(
-                    //           cityWeatherProvider.currentWeather!.sys!.sunrise!)
-                    //       : '',
-                    // ),
-                    //  SizedBox(width: 10),
-                    // OtherFactor(
-                    //   FactorName: 'Sun Rise',
-                    //   icon: Icons.nightlight_round,
-                    //   val: cityWeatherProvider.currentWeather != null &&
-                    //           cityWeatherProvider.currentWeather!.sys!.sunset !=
-                    //               null
-                    //       ? _formatTime(
-                    //           cityWeatherProvider.currentWeather!.sys!.sunset!)
-                    //       : '',
-                    // ),
+                    SizedBox(width: 10),
+                    OtherFactor(
+                      FactorName: 'Sun Rise',
+                      icon: Icons.wb_sunny, // Relevant icon for sunrise
+                      val: cityWeatherProvider.currentWeather != null &&
+                              cityWeatherProvider
+                                      .currentWeather!.sys!.sunrise !=
+                                  null
+                          ? _formatTime(
+                              cityWeatherProvider.currentWeather!.sys!.sunrise!)
+                          : '',
+                    ),
+                    SizedBox(width: 10),
+                    OtherFactor(
+                      FactorName: 'Sun Rise',
+                      icon: Icons.nightlight_round,
+                      val: cityWeatherProvider.currentWeather != null &&
+                              cityWeatherProvider.currentWeather!.sys!.sunset !=
+                                  null
+                          ? _formatTime(
+                              cityWeatherProvider.currentWeather!.sys!.sunset!)
+                          : '',
+                    ),
                   ],
                 )),
               ],
